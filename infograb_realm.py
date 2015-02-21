@@ -1,6 +1,7 @@
-__author__ = 'Bob'
+__author__ = 'Bob Lewis'
 import httplib2,json
 PET_QUALITY = [ 'Poor', 'Common', 'Uncommon', 'Rare', 'Epic', 'Legendary','unknown']
+spinner = '||//--\\\\'
 
 '''{
 "realm":{"name":"Kilrogg","slug":"kilrogg"},
@@ -29,10 +30,12 @@ def realmget(auc_api):
     content_headers, content = h.request(auc_api)
     content = content.decode()
     obj = json.loads(content)
+    print('got json object')
     x=( obj['auctions'])
     y=x['auctions']
     for i in y:
         if  (i['item'])==82800:
+            print('found pet number '+ str(len(auc_list)))
             temp_list=[]
             temp_list.append(i['owner'])
             temp_list.append(i['ownerRealm'])
@@ -46,13 +49,14 @@ def realmget(auc_api):
             temp_list.append(i['petBreedId'])
             #print(temp_list)
             auc_list.append(temp_list)
+    print('list complete')
     return auc_list
 
+def quickspinner(n):
+	print(spinner[n - 1], end ='\r')
 
 def write_to_master(auc_list):
 	with open('temp.txt', 'a') as master:
 		for line in auc_list:
 			master.write(str(line))
-
 	print('details written to bargains.txt')
-
