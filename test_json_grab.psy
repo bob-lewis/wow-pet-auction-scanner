@@ -65,8 +65,6 @@ valid_realms = valid_realms = ['aegwynn', 'aerie-peak', 'agamaggan', 'aggra-port
 spinner = '||//--\\\\'
 server_selection = []
 
-
-
 def bargain_hunter(sell_server_hi, sell_server_lo, buy_server, cheap_server, exp_server):
 	bargains = []
 	for auction in sell_server_lo:
@@ -94,10 +92,6 @@ def page_get(server):
 	for key, value in obj.items():
 		x = (value[0])
 		return (x['url'])
-
-
-def quickspinner(n):
-	print(spinner[n - 1], end ='\r')
 
 
 def get_server():
@@ -128,41 +122,13 @@ def main():
 	create_pet_auction_lists(realmget(server2))
 
 
-def create_pet_auction_lists(auction_list):
+def create_pet_auction_lists(working_list):
 	if second_round == False:
 		hi = r1_hi
 		lo = r1_lo
 	else:
 		hi = r2_hi
 		lo = r2_lo
-
-	working_list = []
-	count = 0
-	for line in auction_list:
-		working_list_temp_line = []
-		working_list_temp_line.append(line[2])
-		working_list_temp_line.append(line[3])
-		cost_adjust = str(line[5]).partition(':')[2]
-		cost = (int(cost_adjust) / 10000)
-		cost = float("{0:.2f}".format(cost))
-		working_list_temp_line.append(cost)
-		check = str(line[17])
-		check = check.partition(':')[2]
-		id = petid_get_new(check)
-		quality = str(line[20])
-		quality = quality.partition(':')[2]
-		qualnumber = (int(quality))
-		quality = PET_QUALITY[qualnumber]
-		petname = str(id + ' of ' + quality + ' quality.')
-		working_list_temp_line.append(petname)
-		working_list_temp_line.append(line[18])
-		working_list.append(working_list_temp_line)
-
-		quickspinner(count)
-		if count > (len(spinner) - 1):
-			count = 0
-		else:
-			count += 1
 
 	for line in working_list:
 		name = str(line[3])
