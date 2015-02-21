@@ -1,0 +1,14 @@
+Hi , I'm bob , the guy who coded this .I'm a first year CS student ,(and grizzled veteren of the IT support world!)
+This program exists to do three things.
+Firstly , to help enforce concepts I've already picked up(i.e. some of the httplib2 stuff , data sorting , file writing etc)
+Secondly to help me learn new ideas and uses(the json stuff , working with blizzards api etc)
+thirdly to help get my world of warcraft earn some cold hard cash (well gold, but you get the idea!)
+.I'm a n00b coder , so any mistakes spotted or advice given is appreciated!(my ego can take it!)
+The idea is based around the fact that in WoW you cant easily transfer most items between characters you've created on different servers(realms)for the purposes of this doc I'll call them s1 and s2
+BUT!! battlepets can be bought , added to your account-wide collection , then removed from the collection by a different character on another server and then auctioned.Thus you could buy that pet you want to use on s2 , by picking it up cheap on s1 (or buy low on s2 and sell high on another server!)
+The progran itself is split into 2 files .run_me , asks the user for 2 server names , then imports some libraries from the second file'infograb_realm.py', to allow it to find the correct api auction page for the servers , grab the json data , decode it , grab price ,auction owner, petname, pet quality (like all wow objects it can be poor all the way to epic or even legendary).It then resolves the petid into a petname (again a wow api page returns this data.It then sorts them into 4 dictionaries , highest price on server1(s1_hi) lowest price on server1(s1_lo), highest price on server2 (s2_lo)..and so on , you get the idea.
+It then compares s2_lo to server1 high , and looks for itemes you can buy on s2 and resell etc  on s1.It displays this , along with the highest price sold of on s1.It does this in relation to bargains on s2 as well , it then spits them out as a text file called bargains.txt.
+TODO: work out why it sometimes crashes on first attempt to connect to a server (possibly cache issue?),speed it up ..LOTS!
+Add GUI , add output to csv option.add history.
+
+
